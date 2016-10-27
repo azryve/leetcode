@@ -1,0 +1,23 @@
+cmake_minimum_required(VERSION 3.1)
+PROJECT (leetcode)
+SET (XCODE_BUILD "build.release")
+
+MACRO(SUBDIRLIST result curdir)
+    FILE(GLOB children RELATIVE ${curdir} ${curdir}/*)
+    SET(dirlist "")
+    FOREACH(child ${children})
+        IF(IS_DIRECTORY ${curdir}/${child})
+            LIST(APPEND dirlist ${child})
+        ENDIF()
+    ENDFOREACH()
+    SET(${result} ${dirlist})
+ENDMACRO()
+
+SUBDIRLIST(SUBDIRS ${CMAKE_CURRENT_SOURCE_DIR})
+
+FOREACH(subdir ${SUBDIRS})
+    STRING(COMPARE EQUAL "${subdir}" ${XCODE_BUILD} _cmp)
+    IF(NOT _cmp)
+        ADD_SUBDIRECTORY(${subdir})
+    ENDIF()
+ENDFOREACH()
