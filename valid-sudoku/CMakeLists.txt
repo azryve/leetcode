@@ -1,0 +1,1 @@
+add_executable(valid-sudoku valid-sudoku.cpp)
