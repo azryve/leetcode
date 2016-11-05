@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.2)
 PROJECT (leetcode)
 SET (XCODE_BUILD "build.release")
 SET (GIT_DIR ".git")
+SET (CMAKE_CXX_STANDARD 11)
 
 MACRO(SUBDIRLIST result curdir)
     FILE(GLOB children RELATIVE ${curdir} ${curdir}/*)
